@@ -8,6 +8,10 @@ class SampleOne(IconScoreBase):
     _DICT_DB_SAMPLE = "dict_db_sample"
 
 
+    @eventlog
+    def OwnerNameChanged(self, owner_name:str):
+        pass
+
     def __init__(self, db: IconScoreDatabase) -> None:
         super().__init__(db)
         self._owner_name = VarDB(self._OWNER_NAME, db, str)
@@ -41,6 +45,15 @@ class SampleOne(IconScoreBase):
         owner = self._owner_name.get()
         elements = [(el, self._dict_db[el]) for el in self._array_db]
         return f"{owner} : Owner, {elements}"
+
+    @external
+    def setOwnerName(self, owner_name:str):
+        self._owner_name.set(owner_name)
+        self.OwnerNameChanged(owner_name)
+
+    @external(readonly=True)
+    def getOwnerName(self)->str:
+        self._owner_name.get()
 
     @payable
     @external
