@@ -41,3 +41,13 @@ class SampleOne(IconScoreBase):
         owner = self._owner_name.get()
         elements = [(el, self._dict_db[el]) for el in self._array_db]
         return f"{owner} : Owner, {elements}"
+
+    @payable
+    @external
+    def deposit(self):
+        pass
+
+    @payable
+    def fallback(self):
+        if self.msg.value >= 10000000000000000000:
+            revert("ICX amount must be lower than 10")
