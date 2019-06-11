@@ -17,6 +17,7 @@ class SampleOne(IconScoreBase):
         self._owner_name = VarDB(self._OWNER_NAME, db, str)
         self._dict_db = DictDB(self._DICT_DB_SAMPLE, db, str)
 
+
     def on_install(self) -> None:
         super().on_install()
         self._owner_name.set("Life4honor 2")
@@ -53,7 +54,7 @@ class SampleOne(IconScoreBase):
 
     @external(readonly=True)
     def getOwnerName(self)->str:
-        self._owner_name.get()
+        return self._owner_name.get()
 
     @payable
     @external

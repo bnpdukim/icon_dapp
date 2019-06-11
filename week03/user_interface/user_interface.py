@@ -12,15 +12,20 @@ class UserInterface(IconScoreBase):
 
     def __init__(self, db: IconScoreDatabase) -> None:
         super().__init__(db)
-        self._interface_ca = VarDB(self._INTERFACE_CA, db, Address)
+        self._interface_ca = VarDB(self._INTERFACE_CA, db, value_type=Address)
 
-    def on_install(self) -> None:
+    def on_install(self, _sampleAddress: Address) -> None:
         super().on_install()
+        self._interface_ca.set(_sampleAddress)
 
     def on_update(self) -> None:
         super().on_update()
+
+    @property
+    def sample_address(self):
+        return self._interface_ca.get()
     
     @external(readonly=True)
-    def getOwnerName(self) -> str:
-        interface = self.create_interface_score(Address.from_string("cx9236ea48fa98edf78bb4294fd225912d112072a7"), SampleInterface)
-        return interface.getOwnerName()
+    def ownerName(self) -> str:
+        _sampleScore = self.create_interface_score(self.sample_address, SampleInterface)
+        return _sampleScore.getOwnerName()
