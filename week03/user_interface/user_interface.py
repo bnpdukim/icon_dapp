@@ -8,9 +8,11 @@ class SampleInterface(InterfaceScore):
         pass
 
 class UserInterface(IconScoreBase):
+    _INTERFACE_CA = "interface_ca"
 
     def __init__(self, db: IconScoreDatabase) -> None:
         super().__init__(db)
+        self._interface_ca = VarDB(self._INTERFACE_CA, db, Address)
 
     def on_install(self) -> None:
         super().on_install()
