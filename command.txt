@@ -1,0 +1,51 @@
+$ tbears init {project name} {class}
+
+# modify for tbears_cli_config.json
+    "stepLimit": "0x77359400",
+$ tbears deploy {project name}
+$ tbears txresult {tx address}
+
+# write call.json
+    {
+      "jsonrpc": "2.0",
+      "method": "icx_call",
+      "params": {
+        "from": "hxe7af5fcfd8dfc67530a01a0e403882687528dfcb", # test user address
+        "to": "cxa5bc0b218726866167b72496682418cff7a2f7ad", # score address
+        "dataType": "call",
+        "data": {
+          "method": "diceRoll", # score method
+          "params": {
+            "data": "hello" # diceRoll parameter
+          }
+        }
+      },
+      "id": 1
+    }
+$ tbears call call.json
+
+$ tbears keystore {file name}
+
+<samplegame deploy>
+$ tbears deploy chip
+$ tbears txresult {tx} # chip score address
+# tbears_cli_config.json
+    {
+        "uri": "http://127.0.0.1:9000/api/v3",
+        "nid": "0x3",
+        "keyStore": null,
+        "from": "hxe7af5fcfd8dfc67530a01a0e403882687528dfcb",
+        "to": "cx0000000000000000000000000000000000000000",
+        "deploy": {
+            "stepLimit": "0x77359400",
+            "mode": "install",
+            "scoreParams": {
+            "_tokenAddress":{chip score address}
+        }
+        },
+        "txresult": {},
+        "transfer": {
+            "stepLimit": "0xf4240"
+        }
+    }
+$ tbears deploy sample_game
