@@ -1,0 +1,16 @@
+{
+  "jsonrpc": "2.0",
+  "method": "icx_call",
+  "params": {
+    "from": "hxe7af5fcfd8dfc67530a01a0e403882687528dfcb",
+    "to": "cxa5bc0b218726866167b72496682418cff7a2f7ad",
+    "dataType": "call",
+    "data": {
+      "method": "diceRoll",
+      "params": {
+        "data": "hello"
+      }
+    }
+  },
+  "id": 1
+}
