@@ -9,19 +9,12 @@ class Hand:
 
     def __init__(self):
         self.diceNumber = self._DEFAULT_VALUE
-        self.active = True
 
-    def asign_dice_number(self, number: int):
+    def assign_dice_number(self, number: int):
         self.diceNumber = number
-        self.active = False
-
-    def reset(self):
-        self.diceNumber = self._DEFAULT_VALUE
-        self.active = True
 
     def __str__(self):
         response = {
-            'dice': self.diceNumber,
-            'active': self.active
+            'dice': self.diceNumber
         }
         return json_dumps(response)
